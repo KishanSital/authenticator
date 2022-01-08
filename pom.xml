@@ -11,7 +11,8 @@
     <packaging>jar</packaging>
 
     <name>authenticator</name>
-    <url>http://maven.apache.org</url>
+    <description>Library built in java 11, which can be used to simulate a login page</description>
+    <url>https://github.com/KishanSital/authenticator</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
