@@ -1,13 +1,13 @@
 package com.github.KishanSital.authenticator.application;
 
-import  com.github.KishanSital.authenticator.models.UserModel;
-import  com.github.KishanSital.authenticator.serviceImpl.LoginServiceImpl;
-import  com.github.KishanSital.authenticator.serviceImpl.UserSessionServiceImpl;
-import  com.github.KishanSital.authenticator.services.LoginService;
-import  com.github.KishanSital.authenticator.services.UserModelEmpty;
-import  com.github.KishanSital.authenticator.views.LoginView;
+import com.github.KishanSital.authenticator.serviceImpl.UserSessionServiceImpl;
+import com.github.KishanSital.authenticator.services.LoginService;
+import com.github.KishanSital.authenticator.services.UserModelEmpty;
+import com.github.KishanSital.authenticator.models.UserModel;
+import com.github.KishanSital.authenticator.serviceImpl.LoginServiceImpl;
+import com.github.KishanSital.authenticator.views.LoginView;
 
-public final class  com.github.KishanSital.authenticatorApplication {
+public final class MyPackageApplication {
     public static void startLoginService(UserModel expectedUser) {
 
         if (expectedUser == null) {

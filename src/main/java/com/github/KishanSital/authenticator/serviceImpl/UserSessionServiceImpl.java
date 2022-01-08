@@ -1,8 +1,8 @@
 package com.github.KishanSital.authenticator.serviceImpl;
 
 
-import  com.github.KishanSital.authenticator.models.UserModel;
-import  com.github.KishanSital.authenticator.services.UserSessionService;
+import com.github.KishanSital.authenticator.models.UserModel;
+import com.github.KishanSital.authenticator.services.UserSessionService;
 
 public  final class UserSessionServiceImpl implements UserSessionService {
     public static String LOGIN_USERNAME;

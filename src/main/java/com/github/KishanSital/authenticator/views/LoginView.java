@@ -1,15 +1,13 @@
 package com.github.KishanSital.authenticator.views;
 
-import  com.github.KishanSital.authenticator.exceptions.LoginException;
-import  com.github.KishanSital.authenticator.services.LoginService;
-import  com.github.KishanSital.authenticator.services.PrintMessageService;
-import  com.github.KishanSital.authenticator.utils.IntUtils com.github.KishanSital.authenticator;
-import  com.github.KishanSital.authenticator.utils.StringUtils com.github.KishanSital.authenticator;
+import com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceImpl;
+import com.github.KishanSital.authenticator.services.LoginService;
+import com.github.KishanSital.authenticator.services.PrintMessageService;
+import com.github.KishanSital.authenticator.utils.IntUtilsMyPackage;
+import com.github.KishanSital.authenticator.utils.StringUtilsMyPackage;
+import com.github.KishanSital.authenticator.exceptions.LoginException;
 
 import java.util.Scanner;
-
-import static  com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceImpl.resetTriesService;
-import static  com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceImpl.triesValidation;
 
 public final class LoginView {
     public PrintMessageService println = System.out::println; // instance method on parameter reference
@@ -25,26 +23,26 @@ public final class LoginView {
     }
 
     public void startLoginService() {
-        resetTriesService();
+        TriesValidationServiceImpl.resetTriesService();
         do {
             providingCredentials();
             loginService.provideCredentials(args);
             authentication();
         } while (!loginService.isAuthentication());
-        println.print(StringUtils com.github.KishanSital.authenticator.LOGIN_SUCCESS_MESSAGE.getStringValue());
+        println.print(StringUtilsMyPackage.LOGIN_SUCCESS_MESSAGE.getStringValue());
     }
 
 
     public void providingCredentials() {
 
-        println.print(StringUtils com.github.KishanSital.authenticator.PROVIDE_USERNAME_MESSAGE.getStringValue());
-        args[IntUtils com.github.KishanSital.authenticator.USERNAME_INDEX.getIntValue()] = scanner.next();
-        println.print(String.format("Hi %s", args[IntUtils com.github.KishanSital.authenticator.USERNAME_INDEX.getIntValue()]));
+        println.print(StringUtilsMyPackage.PROVIDE_USERNAME_MESSAGE.getStringValue());
+        args[IntUtilsMyPackage.USERNAME_INDEX.getIntValue()] = scanner.next();
+        println.print(String.format("Hi %s", args[IntUtilsMyPackage.USERNAME_INDEX.getIntValue()]));
         println.print("");
 
-        println.print(StringUtils com.github.KishanSital.authenticator.PROVIDE_PASSWORD_MESSAGE.getStringValue());
+        println.print(StringUtilsMyPackage.PROVIDE_PASSWORD_MESSAGE.getStringValue());
         char[] password = scanner.next().toCharArray();
-        args[IntUtils com.github.KishanSital.authenticator.PASSWORD_INDEX.getIntValue()] = (String.valueOf(password));
+        args[IntUtilsMyPackage.PASSWORD_INDEX.getIntValue()] = (String.valueOf(password));
 
     }
 
@@ -55,7 +53,7 @@ public final class LoginView {
             // we'd then have suppressed exceptions, with the one thrown from protected code being the primary exception
             loginService.setAuthentication(loginService.authenticationResult());
             if (!loginService.isAuthentication()) {
-                throw new LoginException(StringUtils com.github.KishanSital.authenticator.INVALID_CREDENTIALS_MESSAGE.getStringValue());
+                throw new LoginException(StringUtilsMyPackage.INVALID_CREDENTIALS_MESSAGE.getStringValue());
             }
         } catch (LoginException e) {
             println.print(e.getMessage());
@@ -64,7 +62,7 @@ public final class LoginView {
             }
         } finally {
             if (!loginService.isAuthentication()) {
-                triesValidation();
+                TriesValidationServiceImpl.triesValidation();
             }
         }
 

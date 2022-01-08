@@ -1,8 +1,7 @@
 package com.github.KishanSital.authenticator.services;
 
-import  com.github.KishanSital.authenticator.annotations.Service;
-
-import static  com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceImpl.resetTriesService;
+import com.github.KishanSital.authenticator.annotations.Service;
+import com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceImpl;
 
 @Service
 public abstract interface MenuService {
@@ -19,7 +18,7 @@ public abstract interface MenuService {
         reset();
     }
     private static void reset(){
-        resetTriesService();
+        TriesValidationServiceImpl.resetTriesService();
     }
 
 }

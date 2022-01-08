@@ -1,6 +1,6 @@
 package com.github.KishanSital.authenticator.utils;
 
-public enum StringUtils com.github.KishanSital.authenticator {
+public enum StringUtilsMyPackage {
     // enumeration constants are implicit public static final
     INVALID_CREDENTIALS_MESSAGE(Constants.INVALID_CREDENTIALS_MESSAGE_VALUE),
     PROVIDE_USERNAME_MESSAGE(Constants.PROVIDE_USERNAME_MESSAGE_VALUE),
@@ -16,7 +16,7 @@ public enum StringUtils com.github.KishanSital.authenticator {
 
     private String stringValue;
 
-    private StringUtils com.github.KishanSital.authenticator(String stringValue) {
+    private StringUtilsMyPackage(String stringValue) {
         this.stringValue = stringValue;
     }
 

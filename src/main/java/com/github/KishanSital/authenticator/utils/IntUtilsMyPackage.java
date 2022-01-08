@@ -1,6 +1,6 @@
 package com.github.KishanSital.authenticator.utils;
 
-public enum IntUtils com.github.KishanSital.authenticator {
+public enum IntUtilsMyPackage {
     // enumeration constants are implicit public static final
     RETRY_LIMIT(Constants.RETRY_LIMIT_VALUE),
     NO_TRIES_LEFT(Constants.NO_TRIES_LEFT_VALUE),
@@ -11,7 +11,7 @@ public enum IntUtils com.github.KishanSital.authenticator {
 
     private int intValue;
 
-    private IntUtils com.github.KishanSital.authenticator(int intValue) {
+    private IntUtilsMyPackage(int intValue) {
         this.intValue = intValue;
     }
 
