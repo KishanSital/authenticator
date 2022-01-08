@@ -5,7 +5,6 @@ import com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceIm
 
 @Service
 public abstract interface MenuService {
-    // none of these abstract methods are required to be implement and overridden
     String toString();
     int hashCode();
     boolean equals(Object object);

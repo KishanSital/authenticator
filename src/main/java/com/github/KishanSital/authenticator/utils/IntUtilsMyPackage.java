@@ -1,7 +1,6 @@
 package com.github.KishanSital.authenticator.utils;
 
 public enum IntUtilsMyPackage {
-    // enumeration constants are implicit public static final
     RETRY_LIMIT(Constants.RETRY_LIMIT_VALUE),
     NO_TRIES_LEFT(Constants.NO_TRIES_LEFT_VALUE),
     QUESTION_MESSAGE_INDEX(Constants.QUESTION_MESSAGE_INDEX_VALUE),

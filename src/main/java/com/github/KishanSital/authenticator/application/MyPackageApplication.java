@@ -15,7 +15,7 @@ public final class MyPackageApplication {
             System.exit(0);
         }
 
-        //Constructor reference
+
         UserModelEmpty userModelEmpty = UserModel::new;
 
         new UserSessionServiceImpl(expectedUser);

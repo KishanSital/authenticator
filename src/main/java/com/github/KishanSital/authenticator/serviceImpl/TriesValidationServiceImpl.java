@@ -9,7 +9,7 @@ import com.github.KishanSital.authenticator.utils.StringUtilsMyPackage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class TriesValidationServiceImpl implements TriesValidationService {
-    //Atomic classes for our instance variables
+
     private static AtomicInteger triesLeftCounter, triedCounter;
 
     private TriesValidationServiceImpl() {

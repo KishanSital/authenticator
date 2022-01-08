@@ -16,6 +16,5 @@ public final class LoginException extends Exception implements AutoCloseable {
 
     @Override
     public void close(){
-        /*System.out.println("Closing try with resources for login");*/
     }
 }
