@@ -6,7 +6,7 @@
 
     <groupId>io.github.kishansital</groupId>
     <artifactId>authenticator</artifactId>
-    <version>5.0.1</version>
+    <version>5.0.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -14,12 +14,20 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <mysql.version>8.0.27</mysql.version>
     </properties>
 
     <name>authenticator</name>
     <description>Library built in java 11, which can be used to simulate a login page</description>
     <url>https://github.com/KishanSital/authenticator</url>
 
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

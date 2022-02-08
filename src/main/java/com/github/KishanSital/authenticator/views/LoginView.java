@@ -1,11 +1,13 @@
 package com.github.KishanSital.authenticator.views;
 
+import com.github.KishanSital.authenticator.exceptions.LoginException;
+import com.github.KishanSital.authenticator.models.UserModel;
 import com.github.KishanSital.authenticator.serviceImpl.TriesValidationServiceImpl;
+import com.github.KishanSital.authenticator.serviceImpl.UserSessionServiceImpl;
 import com.github.KishanSital.authenticator.services.LoginService;
 import com.github.KishanSital.authenticator.services.PrintMessageService;
 import com.github.KishanSital.authenticator.utils.IntUtilsMyPackage;
 import com.github.KishanSital.authenticator.utils.StringUtilsMyPackage;
-import com.github.KishanSital.authenticator.exceptions.LoginException;
 
 import java.util.Scanner;
 
@@ -22,14 +24,18 @@ public final class LoginView {
         this.args = new String[2];
     }
 
-    public void startLoginService() {
+    public UserModel startLoginService() {
         TriesValidationServiceImpl.resetTriesService();
+        UserModel authenticatedUser = null;
         do {
             providingCredentials();
             loginService.provideCredentials(args);
-            authentication();
+            authenticatedUser = authentication();
         } while (!loginService.isAuthentication());
         println.print(StringUtilsMyPackage.LOGIN_SUCCESS_MESSAGE.getStringValue());
+        UserSessionServiceImpl.LOGIN_USERNAME = authenticatedUser.getUsername();
+        UserSessionServiceImpl.LOGIN_PASSWORD = authenticatedUser.getPassword();
+        return authenticatedUser;
     }
 
 
@@ -46,11 +52,12 @@ public final class LoginView {
 
     }
 
-    public void authentication() {
+    public UserModel authentication() {
         LoginException loginException = new LoginException();
-
+        UserModel authenticationResult = null;
         try (loginException) {
-            loginService.setAuthentication(loginService.authenticationResult());
+            authenticationResult = loginService.authenticationResult();
+            loginService.setAuthentication(authenticationResult != null);
             if (!loginService.isAuthentication()) {
                 throw new LoginException(StringUtilsMyPackage.INVALID_CREDENTIALS_MESSAGE.getStringValue());
             }
@@ -65,5 +72,6 @@ public final class LoginView {
             }
         }
 
+        return authenticationResult;
     }
 }

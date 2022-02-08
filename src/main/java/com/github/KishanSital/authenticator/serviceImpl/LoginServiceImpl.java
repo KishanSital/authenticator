@@ -2,20 +2,23 @@ package com.github.KishanSital.authenticator.serviceImpl;
 
 
 import com.github.KishanSital.authenticator.models.UserModel;
+import com.github.KishanSital.authenticator.services.AuthenticationRepositoryService;
 import com.github.KishanSital.authenticator.services.LoginService;
 import com.github.KishanSital.authenticator.utils.IntUtilsMyPackage;
 
 import java.util.Arrays;
-import java.util.function.Predicate;
+import java.util.function.BiFunction;
 
 public final class LoginServiceImpl implements LoginService {
     public boolean isAuthentication;
     private boolean isLoggedIn;
     private UserModel userModel;
+    private final AuthenticationRepositoryService authenticationRepositoryService;
 
-    public LoginServiceImpl(UserModel userModel) {
+    public LoginServiceImpl(UserModel userModel, AuthenticationRepositoryService authenticationRepositoryService) {
         super();
         this.userModel = userModel;
+        this.authenticationRepositoryService = authenticationRepositoryService;
         init();
     }
 
@@ -30,25 +33,29 @@ public final class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public boolean authenticationResult() {
-        isAuthentication = authenticateUser(k -> {
-            if ((UserSessionServiceImpl.LOGIN_USERNAME.equalsIgnoreCase(k.getUsername())) &&
-                    (Arrays.equals(UserSessionServiceImpl.LOGIN_PASSWORD, k.getPassword()))) {
-                return true;
+    public UserModel authenticationResult() {
+        UserModel resultingUserModel = authenticateUser((enteredUserModel, foundUserModel) -> {
+            if (foundUserModel != null &&
+                    Arrays.equals(enteredUserModel.getPassword(), foundUserModel.getPassword()) &&
+                    enteredUserModel.getUsername().equalsIgnoreCase(foundUserModel.getUsername())) {
+                return foundUserModel;
             } else {
-                return false;
+                return null;
             }
         });
-        return isAuthentication;
+        return resultingUserModel;
     }
 
     @Override
-    public boolean authenticateUser(Predicate<UserModel> loggingIn) {
+    public UserModel authenticateUser(BiFunction<UserModel, UserModel, UserModel> loggingIn) {
         isLoggedIn = false;
-        if (loggingIn.test(userModel)) {
+        UserModel foundUser = authenticationRepositoryService.findUserByUsernameAndPassword(userModel);
+        UserModel resultingUserModel = loggingIn.apply(userModel, foundUser);
+        if (resultingUserModel != null) {
             isLoggedIn = true;
+            setAuthentication(isLoggedIn);
         }
-        return isLoggedIn;
+        return resultingUserModel;
     }
 
     @Override
@@ -63,6 +70,6 @@ public final class LoginServiceImpl implements LoginService {
 
     @Override
     public void setAuthentication(boolean authentication) {
-
+        this.isAuthentication = authentication;
     }
 }
