@@ -2,5 +2,3 @@
 
 # authenticator
 Library built in java 11, which can be used to simulate a login function
-
-
